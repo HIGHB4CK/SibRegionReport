@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Data
 public class Objects {
     LocalDate date;
-    String material;
+    String object_name; // Destination in DB
+    String material_name;
     Short tons;
 }

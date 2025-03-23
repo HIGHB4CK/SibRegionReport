@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Data
 public class Diesel {
     LocalDate date;
+    String state_num;
+    int milleage;
     int fuel_size;
-    String driver;
 }
