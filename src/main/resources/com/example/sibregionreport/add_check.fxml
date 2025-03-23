@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="610.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sibregionreport.controllers.AddCheckController">
+   <Label layoutX="53.0" layoutY="14.0" text="Дата"/>
+   <Label layoutX="153.0" layoutY="88.0" text="Водитель"/>
+   <Label layoutX="531.0" layoutY="88.0" text="Куда"/>
+   <Label layoutX="9.0" layoutY="190.0" prefHeight="18.0" prefWidth="114.0" text="Солярки потрачено"/>
+   <Label layoutX="144.0" layoutY="191.0" text="Проехал км"/>
+   <Label layoutX="275.0" layoutY="88.0" text="Заказчик"/>
+   <Label layoutX="266.0" layoutY="190.0" text="Время начала"/>
+   <Label layoutX="402.0" layoutY="88.0" text="Откуда"/>
+   <Label layoutX="385.0" layoutY="190.0" text="Время конца"/>
+   <Label layoutX="490.0" layoutY="191.0" text="Количество рейсов"/>
+   <TextField fx:id="indicateCustomer" layoutX="256.0" layoutY="122.0" prefHeight="26.0" prefWidth="86.0"/>
+   <TextField fx:id="indicateFrom" layoutX="378.0" layoutY="122.0" prefHeight="26.0" prefWidth="86.0"/>
+   <TextField fx:id="indicateTo" layoutX="501.0" layoutY="122.0" prefHeight="26.0" prefWidth="86.0"/>
+   <TextField fx:id="indicateDieselSpend" layoutX="13.0" layoutY="226.0" prefHeight="26.0" prefWidth="86.0"/>
+   <TextField fx:id="indicateKm" layoutX="136.0" layoutY="226.0" prefHeight="26.0" prefWidth="86.0"/>
+   <TextField fx:id="indicateStart" layoutX="256.0" layoutY="226.0" prefHeight="26.0" prefWidth="86.0"/>
+   <TextField fx:id="indicateEnd" layoutX="378.0" layoutY="226.0" prefHeight="26.0" prefWidth="86.0"/>
+   <TextField fx:id="indicateTrip_num" layoutX="501.0" layoutY="226.0" prefHeight="26.0" prefWidth="86.0"/>
+   <DatePicker fx:id="datePicker" layoutX="9.0" layoutY="43.0" prefHeight="26.0" prefWidth="114.0"/>
+   <Label layoutX="27.0" layoutY="88.0" text="Гос номер"/>
+   <ChoiceBox fx:id="indicateState_Num" layoutX="12.0" layoutY="122.0" prefHeight="26.0" prefWidth="86.0">
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="К640ХО154"/>
+            <String fx:value="М593УМ154"/>
+            <String fx:value="М818КО154"/>
+            <String fx:value="М808ЕС154"/>
+            <String fx:value="К863ХО154"/>
+         </FXCollections>
+      </items>
+   </ChoiceBox>
+   <ChoiceBox fx:id="indicateDriver" layoutX="122.0" layoutY="122.0" prefHeight="26.0" prefWidth="114.0">
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Эльшан"/>
+            <String fx:value="Камиль"/>
+         </FXCollections>
+      </items>
+   </ChoiceBox>
+   <Label layoutX="494.0" layoutY="277.0" text="Количество часов"/>
+   <TextField fx:id="indicateHours" layoutX="501.0" layoutY="314.0" prefHeight="26.0" prefWidth="86.0"/>
+   <Label layoutX="25.0" layoutY="277.0" text="Материал"/>
+   <TextField fx:id="indicateMaterial" layoutX="13.0" layoutY="314.0" prefHeight="26.0" prefWidth="86.0"/>
+   <Label layoutX="162.0" layoutY="277.0" text="Тонн"/>
+   <TextField fx:id="indicateTons" layoutX="132.0" layoutY="314.0" prefHeight="26.0" prefWidth="86.0"/>
+   <Button text="Добавить талон" onAction="#saveData" layoutX="260.0" layoutY="314.0"/>
+</AnchorPane>
