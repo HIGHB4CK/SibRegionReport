@@ -8,6 +8,6 @@ import java.time.LocalDate;
 public class Diesel {
     LocalDate date;
     String state_num;
-    int milleage;
+    int mileage;
     int fuel_size;
 }

@@ -1,20 +1,27 @@
 package com.example.sibregionreport.controllers;
 
-import com.example.sibregionreport.Application;
+import com.example.sibregionreport.models.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import javax.swing.text.TableView;
+import javafx.scene.control.TableView;
 import java.io.IOException;
+import java.util.List;
 
 public class ShowTablesController {
 
     Stage newAddScene;
 
-    TableView
+    List<Driver> driverList;
+    List<Diesel> dieselList;
+    List<Material> materialList;
+    List<Objects> objectsList;
+
+    @FXML
+    private TableView tableView;
 
     @FXML
     public void addCheck() {
@@ -36,5 +43,21 @@ public class ShowTablesController {
         else {
             newAddScene.toFront();
         }
+    }
+
+    public void showDieselSpend() {
+
+    }
+
+    public void showDriversReport() {
+
+    }
+
+    public void showMaterialsSpend() {
+
+    }
+
+    public void showObjectsReport() {
+
     }
 }

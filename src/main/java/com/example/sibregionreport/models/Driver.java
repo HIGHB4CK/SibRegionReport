@@ -8,7 +8,7 @@ import java.time.LocalTime;
 public class Driver {
     LocalDate date;
     String name;
-    int milleage;
+    int mileage;
     Short trip_num;
     Short hours_cnt;
     Short fuelSpend;

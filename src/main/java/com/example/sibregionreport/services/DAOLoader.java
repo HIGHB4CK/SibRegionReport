@@ -1,8 +1,12 @@
 package com.example.sibregionreport.services;
 
+import com.example.sibregionreport.models.Driver;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DAOLoader {
 
@@ -46,5 +50,24 @@ public class DAOLoader {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<Driver> getDrivers() {
+        List<Driver> driverList = new ArrayList<>();
+        String sql = "Select \"Date\", \"Driver\", \"Mileage\", \"Trip_num\", \"hours_cnt\", \"Fuel\" FROM alluser";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery()) {
+            LocalDate date = resultSet.getDate("Date").toLocalDate();
+            String name = resultSet.getString("Driver");
+            int mills = resultSet.getInt("Milleage");
+            short trip_num = resultSet.getShort("Trip_num");
+            short hours_cnt = resultSet.getShort("hours_cnt");
+            short fuel = resultSet.getShort("Fuel");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return driverList;
     }
 }

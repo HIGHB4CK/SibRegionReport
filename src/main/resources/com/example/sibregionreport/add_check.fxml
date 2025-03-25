@@ -16,7 +16,7 @@
    <Label layoutX="153.0" layoutY="88.0" text="Водитель"/>
    <Label layoutX="531.0" layoutY="88.0" text="Куда"/>
    <Label layoutX="9.0" layoutY="190.0" prefHeight="18.0" prefWidth="114.0" text="Солярки потрачено"/>
-   <Label layoutX="144.0" layoutY="191.0" text="Проехал км"/>
+   <Label layoutX="144.0" layoutY="191.0" text="Пробег"/>
    <Label layoutX="275.0" layoutY="88.0" text="Заказчик"/>
    <Label layoutX="266.0" layoutY="190.0" text="Время начала"/>
    <Label layoutX="402.0" layoutY="88.0" text="Откуда"/>

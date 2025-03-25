@@ -5,12 +5,9 @@ import com.example.sibregionreport.services.DAOLoader;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import javax.swing.*;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class AddCheckController {
@@ -47,7 +44,7 @@ public class AddCheckController {
     @FXML
     public void initialize() {
         indicateDieselSpend.setTextFormatter(TextFormatters.createShortTextFormatter());
-        indicateKm.setTextFormatter(TextFormatters.createShortTextFormatter());
+        indicateKm.setTextFormatter(TextFormatters.createIntegerTextFormatter());
         indicateTrip_num.setTextFormatter(TextFormatters.createShortTextFormatter());
         indicateTons.setTextFormatter(TextFormatters.createShortTextFormatter());
         indicateHours.setTextFormatter(TextFormatters.createShortTextFormatter());
@@ -62,7 +59,7 @@ public class AddCheckController {
         String from;
         String destination;
         Short fuel;
-        Integer milleage;
+        Integer mileage;
         Short trip_num;
         String material;
         Short tons;
@@ -78,7 +75,7 @@ public class AddCheckController {
             from = indicateFrom.getText();
             destination = indicateTo.getText();
             fuel = Short.valueOf(indicateDieselSpend.getText());
-            milleage = Integer.parseInt(indicateKm.getText());
+            mileage = Integer.parseInt(indicateKm.getText());
             trip_num = Short.valueOf(indicateTrip_num.getText());
             material = indicateMaterial.getText();
             tons = Short.valueOf(indicateTons.getText());
@@ -98,7 +95,7 @@ public class AddCheckController {
                 return;
             }
 
-            daoLoader.saveData(date, state_num, driver, customer, from, destination, fuel, milleage, trip_num, material, tons, hours_cnt, shift_time_start, shift_time_ending);
+            daoLoader.saveData(date, state_num, driver, customer, from, destination, fuel, mileage, trip_num, material, tons, hours_cnt, shift_time_start, shift_time_ending);
             daoLoader.close();
         } catch(Exception e) {
             showAlert("Ошибка ввода", "Не все поля заполнены");

@@ -31,24 +31,24 @@ public class TextFormatters {
         return new TextFormatter<>(converter, null, filter);
     }
 
-//    public static TextFormatter<Integer> createIntegerTextFormatter() {
-//        StringConverter<Integer> converter = new IntegerStringConverter();
-//        UnaryOperator<TextFormatter.Change> filter = change -> {
-//            String newText = change.getControlNewText();
-//            if (newText.matches("^[0-9]{0,10}$")) {
-//                try {
-//                    if (newText.isEmpty() || (Integer.parseInt(newText) >= 0 && Integer.parseInt(newText) <= Integer.MAX_VALUE)) {
-//                        return change;
-//                    }
-//                } catch (NumberFormatException e) {
-//
-//                }
-//            }
-//            return null;
-//        };
-//        return new TextFormatter<>(converter, null, filter);
-//    }
-//
+    public static TextFormatter<Integer> createIntegerTextFormatter() {
+        StringConverter<Integer> converter = new IntegerStringConverter();
+        UnaryOperator<TextFormatter.Change> filter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("^[0-9]{0,10}$")) {
+                try {
+                    if (newText.isEmpty() || (Integer.parseInt(newText) >= 0 && Integer.parseInt(newText) <= Integer.MAX_VALUE)) {
+                        return change;
+                    }
+                } catch (NumberFormatException e) {
+
+                }
+            }
+            return null;
+        };
+        return new TextFormatter<>(converter, null, filter);
+    }
+
 //    public static TextFormatter<LocalTime> createTimeTextFormatter() {
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
 //        StringConverter<LocalTime> converter = new LocalTimeStringConverter(formatter, formatter);
