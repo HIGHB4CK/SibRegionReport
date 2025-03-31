@@ -13,6 +13,9 @@ import java.time.format.DateTimeParseException;
 public class AddCheckController {
 
     @FXML
+    TableView tableView;
+
+    @FXML
     private TextField indicateCustomer;
     @FXML
     private TextField indicateFrom;
@@ -100,6 +103,9 @@ public class AddCheckController {
         } catch(Exception e) {
             showAlert("Ошибка ввода", "Не все поля заполнены");
             return;
+        }
+        if (this.tableView != null) {
+            this.tableView.refresh();
         }
     }
 
