@@ -1,5 +1,6 @@
 package com.example.sibregionreport;
 
+import com.example.sibregionreport.controllers.ShowTablesController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -13,11 +14,15 @@ public class Application extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load(), 1100, 622);
         stage.setTitle("Таблица отчетности СибирьРегионДорСтрой");
         stage.setScene(scene);
-        stage.setResizable(false);
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch();
+        try {
+            launch();
+        } catch(Exception e) {
+            System.out.println("Ошибка загрузки");
+            e.printStackTrace();
+        }
     }
 }

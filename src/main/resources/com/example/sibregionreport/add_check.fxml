@@ -15,12 +15,12 @@
    <Label layoutX="53.0" layoutY="14.0" text="Дата"/>
    <Label layoutX="153.0" layoutY="88.0" text="Водитель"/>
    <Label layoutX="531.0" layoutY="88.0" text="Куда"/>
-   <Label layoutX="9.0" layoutY="190.0" prefHeight="18.0" prefWidth="114.0" text="Солярки потрачено"/>
+   <Label layoutX="9.0" layoutY="190.0" prefHeight="18.0" prefWidth="114.0" text="Солярки залито"/>
    <Label layoutX="144.0" layoutY="191.0" text="Пробег"/>
    <Label layoutX="275.0" layoutY="88.0" text="Заказчик"/>
-   <Label layoutX="266.0" layoutY="190.0" text="Время начала"/>
+   <Label layoutX="266.0" layoutY="190.0" text="Время начала &#10;смены"/>
    <Label layoutX="402.0" layoutY="88.0" text="Откуда"/>
-   <Label layoutX="385.0" layoutY="190.0" text="Время конца"/>
+   <Label layoutX="385.0" layoutY="190.0" text="Время конца &#10;смены"/>
    <Label layoutX="490.0" layoutY="191.0" text="Количество рейсов"/>
    <TextField fx:id="indicateCustomer" layoutX="256.0" layoutY="122.0" prefHeight="26.0" prefWidth="86.0"/>
    <TextField fx:id="indicateFrom" layoutX="378.0" layoutY="122.0" prefHeight="26.0" prefWidth="86.0"/>
@@ -46,8 +46,11 @@
    <ChoiceBox fx:id="indicateDriver" layoutX="122.0" layoutY="122.0" prefHeight="26.0" prefWidth="114.0">
       <items>
          <FXCollections fx:factory="observableArrayList">
-            <String fx:value="Эльшан"/>
-            <String fx:value="Камиль"/>
+            <String fx:value="Орхан"/>
+            <String fx:value="Эльчин"/>
+            <String fx:value="Яшар"/>
+            <String fx:value="Ферхад"/>
+            <String fx:value="Джейхун"/>
          </FXCollections>
       </items>
    </ChoiceBox>
@@ -57,5 +60,6 @@
    <TextField fx:id="indicateMaterial" layoutX="13.0" layoutY="314.0" prefHeight="26.0" prefWidth="86.0"/>
    <Label layoutX="162.0" layoutY="277.0" text="Тонн"/>
    <TextField fx:id="indicateTons" layoutX="132.0" layoutY="314.0" prefHeight="26.0" prefWidth="86.0"/>
+   <Label fx:id="info" layoutX="260.0" layoutY="280.0" text=""/>
    <Button text="Добавить талон" onAction="#saveData" layoutX="260.0" layoutY="314.0"/>
 </AnchorPane>

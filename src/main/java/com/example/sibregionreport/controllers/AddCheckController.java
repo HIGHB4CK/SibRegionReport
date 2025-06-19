@@ -8,13 +8,15 @@ import javafx.scene.control.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class AddCheckController {
 
     @FXML
     TableView tableView;
-
+    @FXML
+    Label info;
     @FXML
     private TextField indicateCustomer;
     @FXML
@@ -46,11 +48,11 @@ public class AddCheckController {
 
     @FXML
     public void initialize() {
-        indicateDieselSpend.setTextFormatter(TextFormatters.createShortTextFormatter());
+        indicateDieselSpend.setTextFormatter(TextFormatters.createFloatTextFormatter());
         indicateKm.setTextFormatter(TextFormatters.createIntegerTextFormatter());
         indicateTrip_num.setTextFormatter(TextFormatters.createShortTextFormatter());
-        indicateTons.setTextFormatter(TextFormatters.createShortTextFormatter());
-        indicateHours.setTextFormatter(TextFormatters.createShortTextFormatter());
+        indicateTons.setTextFormatter(TextFormatters.createFloatTextFormatter());
+        indicateHours.setTextFormatter(TextFormatters.createFloatTextFormatter());
     }
 
     @FXML
@@ -61,45 +63,50 @@ public class AddCheckController {
         String customer;
         String from;
         String destination;
-        Short fuel;
+        Float fuel;
         Integer mileage;
         Short trip_num;
         String material;
-        Short tons;
-        Integer hours_cnt;
+        Float tons;
+        Float hours_cnt;
         LocalTime shift_time_start;
         LocalTime shift_time_ending;
 
         try {
             LocalDate date = datePicker.getValue();
             String state_num = indicateState_Num.getValue();
-            String driver = indicateDriver.getValue();
+            String driver = indicateDriver.getValue().toUpperCase();
             customer = indicateCustomer.getText();
             from = indicateFrom.getText();
-            destination = indicateTo.getText();
-            fuel = Short.valueOf(indicateDieselSpend.getText());
+            destination = indicateTo.getText().toUpperCase();
+            fuel = Float.parseFloat(indicateDieselSpend.getText());
             mileage = Integer.parseInt(indicateKm.getText());
             trip_num = Short.valueOf(indicateTrip_num.getText());
-            material = indicateMaterial.getText();
-            tons = Short.valueOf(indicateTons.getText());
-            hours_cnt = Integer.parseInt(indicateHours.getText());
+            material = indicateMaterial.getText().toUpperCase();
+            tons = Float.valueOf(indicateTons.getText());
+            hours_cnt = Float.parseFloat(indicateHours.getText());
 
             try {
-                shift_time_start = LocalTime.parse(indicateStart.getText());
+                shift_time_start = LocalTime.parse(indicateStart.getText(), DateTimeFormatter.ofPattern("H:mm"));
             } catch (DateTimeParseException e) {
                 showAlert("Ошибка ввода", "Неверный формат времени начала смены. Используйте H:mm");
                 return;
             }
 
             try {
-                shift_time_ending = LocalTime.parse(indicateEnd.getText());
+                shift_time_ending = LocalTime.parse(indicateEnd.getText(), DateTimeFormatter.ofPattern("H:mm"));
             } catch (DateTimeParseException e) {
                 showAlert("Ошибка ввода", "Неверный формат времени окончания смены. Используйте H:mm");
                 return;
             }
 
             daoLoader.saveData(date, state_num, driver, customer, from, destination, fuel, mileage, trip_num, material, tons, hours_cnt, shift_time_start, shift_time_ending);
+
+            info.setText("Успешное сохранение");
+
             daoLoader.close();
+
+
         } catch(Exception e) {
             showAlert("Ошибка ввода", "Не все поля заполнены");
             return;

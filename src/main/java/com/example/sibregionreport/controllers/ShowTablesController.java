@@ -9,12 +9,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import javafx.scene.control.TableView;
+
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
@@ -42,6 +43,14 @@ public class ShowTablesController {
     private TableView<TableRecord> tableView;
 
     @FXML
+    private DatePicker datePicker1;
+
+    @FXML
+    private DatePicker datePicker2;
+
+    Runnable lastMethod;
+
+    @FXML
     public void initialize() {
         // Заполняем ChoiceBox данными, полученными из базы данных, в отдельном потоке
         ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -63,6 +72,7 @@ public class ShowTablesController {
             materials.add(null);
 
         });
+        setuoDeleteOnKeyPress();
     }
 
     @FXML
@@ -78,8 +88,11 @@ public class ShowTablesController {
                 newAddScene.setOnCloseRequest(e -> newAddScene = null);
                 newAddScene.show();
             } catch (IOException e) {
-                JOptionPane.showMessageDialog(null,"Не удалось отобразить окно добавления талона" + e.getMessage());
-                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Ошибка");
+                alert.setHeaderText(null);
+                alert.setContentText("Не удалось отобразить окно добавления талона.");
+                alert.showAndWait();
             }
         }
         else {
@@ -89,11 +102,11 @@ public class ShowTablesController {
 
     @FXML
     public void showDriversReport() {
-        List<Driver> driverList = DAOLoader.getDriverList();
-        String selectedName = driverPicker.getValue();
-        ObservableList<TableRecord> tableRecords = driverList.stream().filter(driver -> selectedName == null || selectedName.equals(driver.getName()))
-                .map( driver -> {
+        List<Driver> driverList = DAOLoader.getDriverList(datePicker1, datePicker2, driverPicker, materialPicker, objectPicker);
+        ObservableList<TableRecord> tableRecords = FXCollections.observableArrayList();
+        for (Driver driver : driverList) {
             TableRecord record = new TableRecord();
+            record.addField("id", String.valueOf(driver.getId()));
             record.addField("Дата", driver.getDate().format(DateTimeFormatter.ofPattern("d/MM/yyyy")));
             record.addField("Имя", driver.getName());
             record.addField("Пробег", String.valueOf(driver.getMileage()));
@@ -101,65 +114,99 @@ public class ShowTablesController {
             record.addField("Количество часов", String.valueOf(driver.getHours_cnt()));
             record.addField("Израсходовано топлива", String.valueOf(driver.getFuelSpend()));
 
-            return record;
-        }).collect(Collectors.toCollection(FXCollections::observableArrayList));
+            tableRecords.add(record);
+        }
         showTableWithRecords(tableRecords);
+        lastMethod = this::showDriversReport;
     }
 
     @FXML
     public void showDieselSpend() {
-        List<Diesel> dieselList = DAOLoader.getDieselList();
-        String selectedName = driverPicker.getValue();
-        ObservableList<TableRecord>tableRecords = dieselList.stream()
-                .filter(diesel -> selectedName == null || selectedName.equals(diesel.getDriver_name()))
-                .map(diesel ->{
-                    TableRecord record = new TableRecord();
-                    record.addField("Дата",diesel.getDate().format(DateTimeFormatter.ofPattern("d/MM/yyyy")));
-                    record.addField("Гос номер", diesel.getState_num());
-                    record.addField("Имя", diesel.getDriver_name());
-                    record.addField("Пробег", String.valueOf(diesel.getMileage()));
-                    record.addField("Израсходовано топлива", String.valueOf(diesel.getFuel_size()));
+        List<Diesel> dieselList = DAOLoader.getDieselList(datePicker1, datePicker2, driverPicker, materialPicker, objectPicker);
+        ObservableList<TableRecord>tableRecords = FXCollections.observableArrayList();
+        for (Diesel diesel : dieselList) {
+            TableRecord record = new TableRecord();
+            record.addField("id", String.valueOf(diesel.getId()));
+            record.addField("Дата", diesel.getDate().format(DateTimeFormatter.ofPattern("d/MM/yyyy")));
+            record.addField("Гос номер", diesel.getState_num());
+            record.addField("Имя", diesel.getDriver_name());
+            record.addField("Пробег", String.valueOf(diesel.getMileage()));
+            record.addField("Израсходовано топлива", String.valueOf(diesel.getFuel_size()));
 
-                    return record;
-                }).collect(Collectors.toCollection(FXCollections::observableArrayList));
+            tableRecords.add(record);
+        }
         showTableWithRecords(tableRecords);
+        lastMethod = this::showDieselSpend;
     }
 
     @FXML
     public void showMaterialsSpend() {
-        List<Material> materialList = DAOLoader.getMaterialList();
-        String selectedMaterial = materialPicker.getValue();
-        ObservableList<TableRecord> tableRecords = materialList.stream()
-                .filter(material -> selectedMaterial == null || selectedMaterial.equals(material.getMaterial_name()))
-                .map(material ->{
-                    TableRecord record = new TableRecord();
-                    record.addField("Дата",material.getDate().format(DateTimeFormatter.ofPattern("d/MM/yyyy")));
-                    record.addField("Материал", material.getMaterial_name());
-                    record.addField("Объект", material.getObject_name());
-                    record.addField("Количество рейсов", String.valueOf(material.getTrip_num()));
-                    record.addField("Тонаж", String.valueOf(material.getTons()));
+        List<Material> materialList = DAOLoader.getMaterialList(datePicker1, datePicker2, driverPicker, materialPicker, objectPicker);
+        ObservableList<TableRecord> tableRecords = FXCollections.observableArrayList();
+        for (Material material : materialList) {
+            TableRecord record = new TableRecord();
+            record.addField("id", String.valueOf(material.getId()));
+            record.addField("Дата", material.getDate().format(DateTimeFormatter.ofPattern("d/MM/yyyy")));
+            record.addField("Материал", material.getMaterial_name());
+            record.addField("Объект", material.getObject_name());
+            record.addField("Количество рейсов", String.valueOf(material.getTrip_num()));
+            record.addField("Тонаж", String.valueOf(material.getTons()));
 
-                    return record;
-                }).collect(Collectors.toCollection(FXCollections::observableArrayList));
+            tableRecords.add(record);
+        }
         showTableWithRecords(tableRecords);
+        lastMethod = this::showMaterialsSpend;
     }
 
     @FXML
     public void showObjectsReport() {
-        List<Objects> objectsList = DAOLoader.getObjectsList();
-        String selectedObject = objectPicker.getValue();
-        ObservableList<TableRecord> tableRecords = objectsList.stream()
-                .filter(object -> selectedObject == null || selectedObject.equals(object.getObject_name()))
-                .map(object -> {
-                    TableRecord record = new TableRecord();
-                    record.addField("Дата",object.getDate().format(DateTimeFormatter.ofPattern("d/MM/yyyy")));
-                    record.addField("Объект", object.getObject_name());
-                    record.addField("Материал", object.getMaterial_name());
-                    record.addField("Тонаж", String.valueOf(object.getTons()));
+        List<Objects> objectsList = DAOLoader.getObjectsList(datePicker1, datePicker2, driverPicker, materialPicker, objectPicker);
+        ObservableList<TableRecord> tableRecords = FXCollections.observableArrayList();
+        for (Objects object : objectsList) {
+            TableRecord record = new TableRecord();
+            record.addField("id", String.valueOf(object.getId()));
+            record.addField("Дата", object.getDate().format(DateTimeFormatter.ofPattern("d/MM/yyyy")));
+            record.addField("Объект", object.getObject_name());
+            record.addField("Материал", object.getMaterial_name());
+            record.addField("Тонаж", String.valueOf(object.getTons()));
 
-                    return record;
-                }).collect(Collectors.toCollection(FXCollections::observableArrayList));
+            tableRecords.add(record);
+        }
         showTableWithRecords(tableRecords);
+        lastMethod = this::showObjectsReport;
+    }
+
+    @FXML
+    public void showAll() {
+        List<Columns> columnsList = DAOLoader.getAllColumns(datePicker1, datePicker2, driverPicker, materialPicker, objectPicker);
+        ObservableList<TableRecord> tableRecords = FXCollections.observableArrayList();
+        for (Columns column : columnsList) {
+            TableRecord record = new TableRecord();
+            record.addField("id", String.valueOf(column.getId()));
+            record.addField("Дата", column.getDate().format(DateTimeFormatter.ofPattern("d/MM/yyyy")));
+            record.addField("Гос номер", column.getState_num());
+            record.addField("Водитель", column.getDriver());
+            record.addField("Закачик", column.getCustomer());
+            record.addField("Время начала", String.valueOf(column.getShift_time_start()));
+            record.addField("Время конца", String.valueOf(column.getShift_time_ending()));
+            record.addField("Откуда", column.getFrom());
+            record.addField("Куда", column.getDestination());
+            record.addField("Расход топлива", String.valueOf(column.getFuel()));
+            record.addField("Километраж", String.valueOf(column.getMileage()));
+            record.addField("Количество часов", String.valueOf(column.getHours_num()));
+            record.addField("Количество рейсов", String.valueOf(column.getTrip_num()));
+            record.addField("Материал", column.getMaterial_name());
+            record.addField("Тон", String.valueOf(column.getTons()));
+
+            tableRecords.add(record);
+        }
+        showTableWithRecords(tableRecords);
+        lastMethod = this::showAll;
+    }
+
+    @FXML
+    public void update() {
+        initialize();
     }
 
     // Этот класс используется для хранения данных для строк таблицы
@@ -200,5 +247,17 @@ public class ShowTablesController {
             // Устанавливаем данные в таблицу
             tableView.setItems(tableRecords);
         }
+    }
+
+    private void setuoDeleteOnKeyPress() {
+        tableView.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.DELETE) {
+                TableRecord record = tableView.getSelectionModel().getSelectedItem();
+                if (record != null) {
+                    DAOLoader.deleteFromDB(Integer.parseInt(record.getField("id")));
+                    lastMethod.run();
+                }
+            }
+        });
     }
 }

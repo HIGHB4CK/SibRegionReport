@@ -2,6 +2,7 @@ package com.example.sibregionreport.CommonClasses;
 
 import javafx.scene.control.TextFormatter;
 import javafx.util.StringConverter;
+import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.LocalTimeStringConverter;
 import javafx.util.converter.ShortStringConverter;
@@ -20,6 +21,24 @@ public class TextFormatters {
             if (newText.matches("^[0-9]{0,5}$")) {
                 try {
                     if (newText.isEmpty() || (Short.parseShort(newText) >= 0 && Short.parseShort(newText) <= Short.MAX_VALUE)) {
+                        return change;
+                    }
+                } catch (NumberFormatException e) {
+
+                }
+            }
+            return null;
+        };
+        return new TextFormatter<>(converter, null, filter);
+    }
+
+    public static TextFormatter<Float> createFloatTextFormatter() {
+        StringConverter<Float> converter = new FloatStringConverter();
+        UnaryOperator<TextFormatter.Change> filter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("^-?\\d+\\.?\\d*$")) {
+                try {
+                    if (newText.isEmpty() || (Float.parseFloat(newText) >=0 && Float.parseFloat(newText) <= Float.MAX_VALUE)) {
                         return change;
                     }
                 } catch (NumberFormatException e) {

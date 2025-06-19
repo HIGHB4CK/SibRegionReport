@@ -7,19 +7,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
+<?import javafx.scene.control.DatePicker?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.sibregionreport.controllers.ShowTablesController" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <TableView fx:id="tableView" layoutX="384.0" prefHeight="622.0" prefWidth="716.0"/>
-      <Button fx:id="showDiesel" onAction="#showDieselSpend" layoutX="14.0" layoutY="550.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="356.0" text="Солярка" />
-      <Button fx:id="showMaterials" onAction="#showMaterialsSpend" layoutX="14.0" layoutY="490.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="356.0" text="Материалы"/>
-      <Button fx:id="showObjects" onAction="#showObjectsReport" layoutX="14.0" layoutY="430.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="356.0" text="Объекты"/>
-      <Button fx:id="showDrivers" onAction="#showDriversReport" layoutX="14.0" layoutY="370.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="356.0" text="Водители" />
-      <ChoiceBox layoutX="14.0" layoutY="40.0" prefWidth="150.0" fx:id="driverPicker"/>
-      <ChoiceBox layoutX="14.0" layoutY="100.0" prefWidth="150.0" fx:id="objectPicker"/>
-      <ChoiceBox layoutX="14.0" layoutY="160.0" prefWidth="150.0" fx:id="materialPicker"/>
-      <Label layoutX="14.0" layoutY="15.0" text="Водитель" />
-      <Label layoutX="14.0" layoutY="75.0" text="Объект" />
-      <Label layoutX="14.0" layoutY="135.0" text="Материал" />
-      <Button layoutX="298.0" layoutY="19.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="72.0" text="Добавить &#10;талон" onAction="#addCheck"/>
-   </children>
+   <AnchorPane layoutX="0" layoutY="0" prefWidth="300" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
+      <children>
+         <Button fx:id="showDiesel" onAction="#showDieselSpend" layoutX="14.0" layoutY="550.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="300.0" text="Солярка" />
+         <Button fx:id="showMaterials" onAction="#showMaterialsSpend" layoutX="14.0" layoutY="490.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="300.0" text="Материалы"/>
+         <Button fx:id="showObjects" onAction="#showObjectsReport" layoutX="14.0" layoutY="430.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="300.0" text="Объекты"/>
+         <Button fx:id="showDrivers" onAction="#showDriversReport" layoutX="14.0" layoutY="370.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="300.0" text="Водители" />
+         <Button fx:id="showAll" onAction="#showAll" layoutX="14.0" layoutY="310.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="300.0" text="Общая таблица" />
+         <ChoiceBox layoutX="14.0" layoutY="40.0" prefWidth="150.0" fx:id="driverPicker"/>
+         <ChoiceBox layoutX="14.0" layoutY="100.0" prefWidth="150.0" fx:id="objectPicker"/>
+         <ChoiceBox layoutX="14.0" layoutY="160.0" prefWidth="150.0" fx:id="materialPicker"/>
+         <DatePicker layoutX="14.0" layoutY="220.0" prefWidth="120.0" fx:id="datePicker1"/>
+         <DatePicker layoutX="144.0" layoutY="220.0" prefWidth="120.0" fx:id="datePicker2"/>
+         <Label layoutX="14.0" layoutY="15.0" text="Фильтрация по водителям" />
+         <Label layoutX="14.0" layoutY="75.0" text="Фильтрация по объекту" />
+         <Label layoutX="14.0" layoutY="135.0" text="Фильтрация по материалу" />
+         <Label layoutX="14.0" layoutY="195.0" text="Показать талоны в интервале дат"/>
+         <Button layoutX="250.0" layoutY="19.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="72.0" text="Добавить &#10;талон" onAction="#addCheck"/>
+         <Button layoutX="250.0" layoutY="65.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="72.0" text="Обновить" onAction="#update"/>
+      </children>
+   </AnchorPane>
+   <TableView fx:id="tableView"
+              AnchorPane.leftAnchor="340"
+              AnchorPane.rightAnchor="0"
+              AnchorPane.topAnchor="0"
+              AnchorPane.bottomAnchor="0" />
 </AnchorPane>
