@@ -18,7 +18,7 @@ import java.util.*;
 
 public class DAOLoader {
 
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/sibregion";
+    private static final String DB_URL = "jdbc:postgresql://192.168.154.197:5432/SibRegionTalons";
     private static final String DB_USER = "postgres";
     private static final String DB_PASSWORD = "Guseynov2005";
 
