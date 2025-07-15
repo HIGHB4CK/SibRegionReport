@@ -10,8 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40777c6c-bd30-4e01-91a0-53090775f203" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/SibRegionReport_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0139070a-c2c6-40a6-a0d3-bb43e8350004.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0139070a-c2c6-40a6-a0d3-bb43e8350004.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0139070a-c2c6-40a6-a0d3-bb43e8350004/storage_v2/_src_/database/SibRegionTalons.VdlzvQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0139070a-c2c6-40a6-a0d3-bb43e8350004/storage_v2/_src_/database/SibRegionTalons.VdlzvQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SibRegionReport-x86_64.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SibRegionReport.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sibregionreport/CommonClasses/TextFormatters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sibregionreport/CommonClasses/TextFormatters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/icon.ico" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,7 +284,16 @@
       <workItem from="1750351295865" duration="855000" />
       <workItem from="1750695949041" duration="9000" />
       <workItem from="1750754148679" duration="38000" />
-      <workItem from="1751007324589" duration="1510000" />
+      <workItem from="1751007324589" duration="1994000" />
+      <workItem from="1751296069799" duration="1891000" />
+      <workItem from="1751303078405" duration="72000" />
+      <workItem from="1751349462005" duration="1038000" />
+      <workItem from="1751350747852" duration="2156000" />
+      <workItem from="1751356964072" duration="1663000" />
+      <workItem from="1751359598872" duration="3537000" />
+      <workItem from="1751887868244" duration="1730000" />
+      <workItem from="1751889962956" duration="21000" />
+      <workItem from="1752389673816" duration="1357000" />
     </task>
     <servers />
   </component>
@@ -500,6 +518,116 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
           <line>366</line>
           <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/sibregionreport/services/DAOLoader.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="68" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

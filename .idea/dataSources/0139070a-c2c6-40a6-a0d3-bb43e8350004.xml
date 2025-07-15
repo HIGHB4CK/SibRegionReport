@@ -3,17 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <Grants>1||-9223372036854775808|c|G
-1||10|c|G
-1||10|C|G
-1||10|T|G
-4||-9223372036854775808|c|G
-4||10|c|G
-4||10|C|G
-4||10|T|G</Grants>
-      <IntrospectionStateNumber>743</IntrospectionStateNumber>
+      <IntrospectionStateNumber>756</IntrospectionStateNumber>
       <ServerVersion>16.9</ServerVersion>
-      <StartupTime>1751009505</StartupTime>
+      <StartupTime>1751887871</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -712,7 +704,7 @@ true posixrules
 13258||10|C|G
 13258||-9223372036854775808|U|G
 13258||10|U|G</Grants>
-      <IntrospectionStateNumber>743</IntrospectionStateNumber>
+      <IntrospectionStateNumber>756</IntrospectionStateNumber>
       <ObjectId>16387</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4136,114 +4128,123 @@ true posixrules
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>743</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2025-06-27.07:31:53</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>756</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2025-07-07.11:44:50</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>523</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
-    <table id="265" parent="264" name="alldata">
+    <sequence id="265" parent="264" name="alldata_id_seq">
+      <ObjectId>16401</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>751</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="266" parent="264" name="alldata">
       <ObjectId>16388</ObjectId>
       <StateNumber>742</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="266" parent="265" name="id">
+    <column id="267" parent="266" name="id">
+      <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>735</StateNumber>
+      <StateNumber>751</StateNumber>
       <StoredType>integer|0s</StoredType>
+      <SequenceId>16401</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="267" parent="265" name="Date">
+    <column id="268" parent="266" name="Date">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>735</StateNumber>
       <StoredType>date|0s</StoredType>
       <TypeId>1082</TypeId>
     </column>
-    <column id="268" parent="265" name="State_num">
+    <column id="269" parent="266" name="State_num">
       <Position>3</Position>
       <StateNumber>735</StateNumber>
       <StoredType>varchar(9)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="269" parent="265" name="Driver">
+    <column id="270" parent="266" name="Driver">
       <Position>4</Position>
       <StateNumber>735</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="270" parent="265" name="Customer">
+    <column id="271" parent="266" name="Customer">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>735</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="271" parent="265" name="From">
+    <column id="272" parent="266" name="From">
       <Position>6</Position>
       <StateNumber>735</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="272" parent="265" name="Destination">
+    <column id="273" parent="266" name="Destination">
       <Position>7</Position>
       <StateNumber>735</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="273" parent="265" name="Fuel">
-      <NotNull>1</NotNull>
+    <column id="274" parent="266" name="Fuel">
       <Position>8</Position>
-      <StateNumber>742</StateNumber>
+      <StateNumber>755</StateNumber>
       <StoredType>numeric(6,2 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
-    <column id="274" parent="265" name="Mileage">
+    <column id="275" parent="266" name="Mileage">
       <NotNull>1</NotNull>
       <Position>9</Position>
       <StateNumber>735</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="275" parent="265" name="Trip_num">
+    <column id="276" parent="266" name="Trip_num">
       <Position>10</Position>
       <StateNumber>735</StateNumber>
       <StoredType>smallint|0s</StoredType>
       <TypeId>21</TypeId>
     </column>
-    <column id="276" parent="265" name="Material">
+    <column id="277" parent="266" name="Material">
       <Position>11</Position>
       <StateNumber>735</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="277" parent="265" name="Tons">
+    <column id="278" parent="266" name="Tons">
       <Position>12</Position>
       <StateNumber>742</StateNumber>
       <StoredType>numeric(7,2 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
-    <column id="278" parent="265" name="hours_cnt">
+    <column id="279" parent="266" name="hours_cnt">
       <Position>13</Position>
       <StateNumber>742</StateNumber>
       <StoredType>numeric(5,2 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
-    <column id="279" parent="265" name="shift_time_start">
+    <column id="280" parent="266" name="shift_time_start">
       <Position>14</Position>
       <StateNumber>735</StateNumber>
       <StoredType>time|0s</StoredType>
       <TypeId>1083</TypeId>
     </column>
-    <column id="280" parent="265" name="shift_time_ending">
+    <column id="281" parent="266" name="shift_time_ending">
       <Position>15</Position>
       <StateNumber>735</StateNumber>
       <StoredType>time|0s</StoredType>
       <TypeId>1083</TypeId>
     </column>
-    <index id="281" parent="265" name="alldata_pkey">
+    <index id="282" parent="266" name="alldata_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16393</ObjectId>
@@ -4252,7 +4253,7 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="282" parent="265" name="alldata_pkey">
+    <key id="283" parent="266" name="alldata_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16394</ObjectId>
       <Primary>1</Primary>

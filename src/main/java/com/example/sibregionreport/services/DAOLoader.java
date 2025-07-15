@@ -37,7 +37,7 @@ public class DAOLoader {
     }
 
     public void saveData(LocalDate date, String state_num, String driver, String customer, String from, String destination, float fuel, int milleage, int trip_num, String material, float tons, float hours_cnt, LocalTime shift_time_start, LocalTime shift_time_ending) {
-        String sql = "INSERT INTO alluser (\"Date\", \"State_num\", \"Driver\", \"Customer\", \"From\", \"Destination\", \"Fuel\", \"Mileage\", \"Trip_num\", \"Material\", \"Tons\", \"hours_cnt\", \"shift_time_start\", \"shift_time_ending\") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO alldata (\"Date\", \"State_num\", \"Driver\", \"Customer\", \"From\", \"Destination\", \"Fuel\", \"Mileage\", \"Trip_num\", \"Material\", \"Tons\", \"hours_cnt\", \"shift_time_start\", \"shift_time_ending\") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setDate(1, java.sql.Date.valueOf(date)); // Assuming datePicker.getValue() returns LocalDate
@@ -48,7 +48,7 @@ public class DAOLoader {
             preparedStatement.setString(6, destination);
             preparedStatement.setFloat(7, fuel);
             preparedStatement.setInt(8, milleage);
-            preparedStatement.setFloat(9, trip_num);
+            preparedStatement.setInt(9, trip_num);
             preparedStatement.setString(10, material);
             preparedStatement.setFloat(11, tons);
             preparedStatement.setFloat(12, hours_cnt);
@@ -66,7 +66,7 @@ public class DAOLoader {
 
     public static List<Driver> getDriverList(DatePicker datePicker1, DatePicker datePicker2, ChoiceBox<String> driverSelector, ChoiceBox<String> materialSelector, ChoiceBox<String> objectSelector) {
         List<Driver> driverList = new ArrayList<>();
-        StringBuilder sql = new StringBuilder("Select \"id\", \"Date\", \"Driver\", \"Mileage\", \"Trip_num\", \"hours_cnt\", \"Fuel\" FROM alluser WHERE 1=1");
+        StringBuilder sql = new StringBuilder("Select \"id\", \"Date\", \"Driver\", \"Mileage\", \"Trip_num\", \"hours_cnt\", \"Fuel\" FROM alldata WHERE 1=1");
 
         if (datePicker1.getValue() != null) {
             sql.append(" AND \"Date\" >= ?");
@@ -139,7 +139,7 @@ public class DAOLoader {
 
     public static List<Diesel> getDieselList(DatePicker datePicker1, DatePicker datePicker2, ChoiceBox<String> driverSelector, ChoiceBox<String> materialSelector, ChoiceBox<String> objectSelector) {
         List<Diesel> dieselList = new ArrayList<>();
-        StringBuilder sql = new StringBuilder("Select \"id\", \"Date\", \"State_num\", \"Driver\", \"Mileage\", \"Fuel\" FROM alluser WHERE 1=1");
+        StringBuilder sql = new StringBuilder("Select \"id\", \"Date\", \"State_num\", \"Driver\", \"Mileage\", \"Fuel\" FROM alldata WHERE 1=1");
 
         if (datePicker1.getValue() != null) {
             sql.append(" AND \"Date\" >= ?");
@@ -213,7 +213,7 @@ public class DAOLoader {
 
     public static List<Material> getMaterialList(DatePicker datePicker1, DatePicker datePicker2, ChoiceBox<String> driverSelector, ChoiceBox<String> materialSelector, ChoiceBox<String> objectSelector)  {
         List<Material> materialList = new ArrayList<>();
-        StringBuilder sql = new StringBuilder("Select \"id\", \"Date\", \"Material\", \"Destination\", \"Trip_num\", \"Tons\" FROM alluser WHERE 1=1");
+        StringBuilder sql = new StringBuilder("Select \"id\", \"Date\", \"Material\", \"Destination\", \"Trip_num\", \"Tons\" FROM alldata WHERE 1=1");
 
         if (datePicker1.getValue() != null) {
             sql.append(" AND \"Date\" >= ?");
@@ -287,7 +287,7 @@ public class DAOLoader {
 
     public static List<Objects> getObjectsList(DatePicker datePicker1, DatePicker datePicker2, ChoiceBox<String> driverSelector, ChoiceBox<String> materialSelector, ChoiceBox<String> objectSelector) {
         List<Objects> objectList = new ArrayList<>();
-        StringBuilder sql = new StringBuilder("Select \"id\", \"Date\", \"Material\", \"Destination\", \"Tons\" FROM alluser WHERE 1=1");
+        StringBuilder sql = new StringBuilder("Select \"id\", \"Date\", \"Material\", \"Destination\", \"Tons\" FROM alldata WHERE 1=1");
 
         if (datePicker1.getValue() != null) {
             sql.append(" AND \"Date\" >= ?");
@@ -362,7 +362,7 @@ public class DAOLoader {
 
     public static List<Columns> getAllColumns(DatePicker datePicker1, DatePicker datePicker2, ChoiceBox<String> driverSelector, ChoiceBox<String> materialSelector, ChoiceBox<String> objectSelector) {
         ObservableList<Columns> columns = FXCollections.observableArrayList();
-        StringBuilder sql = new StringBuilder("Select * FROM alluser WHERE 1=1");
+        StringBuilder sql = new StringBuilder("Select * FROM alldata WHERE 1=1");
 
         if (datePicker1.getValue() != null) {
             sql.append(" AND \"Date\" >= ?");
@@ -448,7 +448,7 @@ public class DAOLoader {
 
     public static ObservableList<String> getObjectsDB() {
         ObservableList<String> objectsList = FXCollections.observableArrayList();
-        String sql = "Select DISTINCT \"Destination\" FROM alluser";
+        String sql = "Select DISTINCT \"Destination\" FROM alldata";
         try (Connection connection2 = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement statement = connection2.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
@@ -468,7 +468,7 @@ public class DAOLoader {
 
     public static ObservableList<String> getDriversDB() {
         ObservableList<String> driversList = FXCollections.observableArrayList();
-        String sql = "Select DISTINCT \"Driver\" FROM alluser";
+        String sql = "Select DISTINCT \"Driver\" FROM alldata";
         try (Connection connection3 = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement statement = connection3.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
@@ -488,7 +488,7 @@ public class DAOLoader {
 
     public static ObservableList<String> getMaterialsDB() {
         ObservableList<String> materialsList = FXCollections.observableArrayList();
-        String sql = "Select DISTINCT \"Material\" FROM alluser";
+        String sql = "Select DISTINCT \"Material\" FROM alldata";
         try (Connection connection1 = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement statement = connection1.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
@@ -507,7 +507,7 @@ public class DAOLoader {
     }
 
     public static void deleteFromDB(int id) {
-        String sql = "DELETE FROM alluser WHERE id = ?";
+        String sql = "DELETE FROM alldata WHERE id = ?";
         try (Connection connection1 = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement statement = connection1.prepareStatement(sql)) {
             statement.setInt(1, id);

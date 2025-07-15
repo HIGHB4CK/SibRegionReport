@@ -36,7 +36,7 @@ public class TextFormatters {
         StringConverter<Float> converter = new FloatStringConverter();
         UnaryOperator<TextFormatter.Change> filter = change -> {
             String newText = change.getControlNewText();
-            if (newText.matches("^-?\\d+\\.?\\d*$")) {
+            if (newText.matches("^-?\\d*\\.?\\d*$")) {
                 try {
                     if (newText.isEmpty() || (Float.parseFloat(newText) >=0 && Float.parseFloat(newText) <= Float.MAX_VALUE)) {
                         return change;
