@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
@@ -19,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,7 +74,7 @@ public class ShowTablesController {
             materials.add(null);
 
         });
-        setuoDeleteOnKeyPress();
+        setupDeleteOnKeyPress();
     }
 
     @FXML
@@ -237,19 +239,103 @@ public class ShowTablesController {
 
     private void showTableWithRecords(ObservableList<TableRecord> tableRecords) {
         tableView.getColumns().clear();
-        // Динамическое создание колонок на основе первой записи
+        tableView.setEditable(true); // Включаем редактирование таблицы
+
         if (!tableRecords.isEmpty()) {
             for (String key : tableRecords.get(0).getAllFields().keySet()) {
                 TableColumn<TableRecord, String> column = new TableColumn<>(key);
-                column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getField(key)));
+                column.setCellValueFactory(cellData ->
+                        new SimpleStringProperty(cellData.getValue().getField(key)));
+
+                // Делаем колонку редактируемой
+                column.setCellFactory(TextFieldTableCell.forTableColumn());
+
+                // Обработчик завершения редактирования
+                column.setOnEditCommit(event -> {
+                    TableRecord record = event.getRowValue();
+                    String newValue = event.getNewValue();
+                    String columnName = event.getTableColumn().getText();
+
+                    // Обновляем значение в записи
+                    record.addField(columnName, newValue);
+
+                    // Обновляем данные в базе
+                    updateRecordInDatabase(record, columnName, newValue);
+                });
+
                 tableView.getColumns().add(column);
             }
-            // Устанавливаем данные в таблицу
+
             tableView.setItems(tableRecords);
         }
     }
 
-    private void setuoDeleteOnKeyPress() {
+    private void updateRecordInDatabase(TableRecord record, String columnName, String newValue) {
+        int id = Integer.parseInt(record.getField("id"));
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.submit(() -> {
+            try {
+                // Обновляем поле в базе данных
+                DAOLoader.updateField(id, mapFieldNameToColumn(columnName), newValue);
+
+                // Обновляем таблицу после изменения
+                Platform.runLater(() -> {
+                    if (lastMethod != null) {
+                        lastMethod.run();
+                    }
+                });
+
+            } catch (SQLException e) {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка обновления");
+                    alert.setHeaderText("Не удалось обновить данные");
+                    alert.setContentText("Ошибка: " + e.getMessage());
+                    alert.showAndWait();
+
+                    // Обновляем таблицу чтобы отобразить исходные значения
+                    if (lastMethod != null) {
+                        lastMethod.run();
+                    }
+                });
+            } finally {
+                executor.shutdown();
+            }
+        });
+    }
+
+    // Вспомогательный метод для преобразования имен полей в названия колонок БД
+    private String mapFieldNameToColumn(String fieldName) {
+        Map<String, String> fieldMap = new HashMap<>();
+        fieldMap.put("id", "id");
+        fieldMap.put("Дата", "Date");
+        fieldMap.put("Имя", "Driver");
+        fieldMap.put("Пробег", "Mileage");
+        fieldMap.put("Количество рейсов", "Trip_num");
+        fieldMap.put("Количество часов", "hours_cnt");
+        fieldMap.put("Израсходовано топлива", "Fuel");
+        fieldMap.put("Гос номер", "State_num");
+        fieldMap.put("Материал", "Material");
+        fieldMap.put("Объект", "Destination");
+        fieldMap.put("Тонаж", "Tons");
+        fieldMap.put("Тон", "Tons");
+        fieldMap.put("Водитель", "Driver");
+        fieldMap.put("Закачик", "Customer");
+        fieldMap.put("Время начала", "shift_time_start");
+        fieldMap.put("Время конца", "shift_time_ending");
+        fieldMap.put("Откуда", "From");
+        fieldMap.put("Куда", "Destination");
+        fieldMap.put("Расход топлива", "Fuel");
+        fieldMap.put("Километраж", "Mileage");
+        fieldMap.put("Количество часов", "hours_cnt");
+        fieldMap.put("Количество рейсов", "Trip_num");
+        fieldMap.put("Материал", "Material");
+
+        return fieldMap.getOrDefault(fieldName, fieldName);
+    }
+
+    private void setupDeleteOnKeyPress() {
         tableView.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.DELETE) {
                 TableRecord record = tableView.getSelectionModel().getSelectedItem();
@@ -260,4 +346,6 @@ public class ShowTablesController {
             }
         });
     }
+
+
 }

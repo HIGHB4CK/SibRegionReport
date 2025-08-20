@@ -10,13 +10,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Objects;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class AddCheckController {
 
     @FXML
     TableView tableView;
-    @FXML
-    Label info;
     @FXML
     private TextField indicateCustomer;
     @FXML
@@ -60,57 +61,61 @@ public class AddCheckController {
         DAOLoader daoLoader = new DAOLoader();
         daoLoader.init();
 
-        String customer;
-        String from;
-        String destination;
-        Float fuel;
-        Integer mileage;
-        Short trip_num;
-        String material;
-        Float tons;
-        Float hours_cnt;
-        LocalTime shift_time_start;
-        LocalTime shift_time_ending;
+        String customer = "";
+        String from = "";
+        String destination = "";
+        Float fuel = -1f;
+        Integer mileage = -1;
+        Short trip_num = -1;
+        String material = "";
+        Float tons = -1f;
+        Float hours_cnt = -1f;
+        LocalTime shift_time_start = null;
+        LocalTime shift_time_ending = null;
 
-        try {
-            LocalDate date = datePicker.getValue();
-            String state_num = indicateState_Num.getValue();
-            String driver = indicateDriver.getValue().toUpperCase();
-            customer = indicateCustomer.getText();
-            from = indicateFrom.getText();
-            destination = indicateTo.getText().toUpperCase();
+        LocalDate date = datePicker.getValue();
+        String state_num = indicateState_Num.getValue();
+        String driver = indicateDriver.getValue().toUpperCase();
+        customer = indicateCustomer.getText();
+        from = indicateFrom.getText();
+        destination = indicateTo.getText().toUpperCase();
+        if (indicateDieselSpend.getText() != null && !indicateDieselSpend.getText().isEmpty()) {
             fuel = Float.parseFloat(indicateDieselSpend.getText());
+        }
+        if (indicateKm.getText() != null && !indicateKm.getText().isEmpty()) {
             mileage = Integer.parseInt(indicateKm.getText());
+        }
+        if (indicateTrip_num.getText() != null && !indicateTrip_num.getText().isEmpty()) {
             trip_num = Short.valueOf(indicateTrip_num.getText());
-            material = indicateMaterial.getText().toUpperCase();
-            tons = Float.valueOf(indicateTons.getText());
+        }
+        material = indicateMaterial.getText().toUpperCase();
+        if (indicateTons.getText() != null && !indicateTons.getText().isEmpty()) {
+            tons = Float.parseFloat(indicateTons.getText());
+        }
+        if (indicateHours.getText() != null && !indicateHours.getText().isEmpty()) {
             hours_cnt = Float.parseFloat(indicateHours.getText());
-
+        }
+        if (indicateStart.getText() != null && !indicateStart.getText().isEmpty()) {
             try {
                 shift_time_start = LocalTime.parse(indicateStart.getText(), DateTimeFormatter.ofPattern("H:mm"));
             } catch (DateTimeParseException e) {
                 showAlert("Ошибка ввода", "Неверный формат времени начала смены. Используйте H:mm");
                 return;
             }
-
+        }
+        if (indicateEnd.getText() != null && !indicateEnd.getText().isEmpty()) {
             try {
                 shift_time_ending = LocalTime.parse(indicateEnd.getText(), DateTimeFormatter.ofPattern("H:mm"));
             } catch (DateTimeParseException e) {
                 showAlert("Ошибка ввода", "Неверный формат времени окончания смены. Используйте H:mm");
                 return;
             }
-
-            daoLoader.saveData(date, state_num, driver, customer, from, destination, fuel, mileage, trip_num, material, tons, hours_cnt, shift_time_start, shift_time_ending);
-
-            info.setText("Успешное сохранение");
-
-            daoLoader.close();
-
-
-        } catch(Exception e) {
-            showAlert("Ошибка ввода", "Не все поля заполнены");
-            return;
         }
+
+        daoLoader.saveData(date, state_num, driver, customer, from, destination, fuel, mileage, trip_num, material, tons, hours_cnt, shift_time_start, shift_time_ending);
+
+        daoLoader.close();
+
         if (this.tableView != null) {
             this.tableView.refresh();
         }
@@ -123,5 +128,4 @@ public class AddCheckController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 }

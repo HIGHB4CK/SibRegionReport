@@ -3,9 +3,17 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>756</IntrospectionStateNumber>
+      <Grants>1||-9223372036854775808|c|G
+1||10|c|G
+1||10|C|G
+1||10|T|G
+4||-9223372036854775808|c|G
+4||10|c|G
+4||10|C|G
+4||10|T|G</Grants>
+      <IntrospectionStateNumber>773</IntrospectionStateNumber>
       <ServerVersion>16.9</ServerVersion>
-      <StartupTime>1751887871</StartupTime>
+      <StartupTime>1755652494</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -704,7 +712,7 @@ true posixrules
 13258||10|C|G
 13258||-9223372036854775808|U|G
 13258||10|U|G</Grants>
-      <IntrospectionStateNumber>756</IntrospectionStateNumber>
+      <IntrospectionStateNumber>773</IntrospectionStateNumber>
       <ObjectId>16387</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4128,8 +4136,8 @@ true posixrules
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>756</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2025-07-07.11:44:50</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>773</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2025-08-20.01:39:34</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>523</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4177,9 +4185,8 @@ true posixrules
       <TypeId>25</TypeId>
     </column>
     <column id="271" parent="266" name="Customer">
-      <NotNull>1</NotNull>
       <Position>5</Position>
-      <StateNumber>735</StateNumber>
+      <StateNumber>772</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
@@ -4202,9 +4209,8 @@ true posixrules
       <TypeId>1700</TypeId>
     </column>
     <column id="275" parent="266" name="Mileage">
-      <NotNull>1</NotNull>
       <Position>9</Position>
-      <StateNumber>735</StateNumber>
+      <StateNumber>760</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
